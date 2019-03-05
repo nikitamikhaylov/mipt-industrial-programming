@@ -1,0 +1,14 @@
+version: '3'
+services:
+    producer:
+        build: 'app'
+        command: python3 -u producer.py rabbitmq 5672
+        depends_on:
+            - rabbitmq
+    consumer:
+        build: 'app'
+        command: python3 -u consumer.py rabbitmq 5672
+        depends_on:
+            - rabbitmq
+    rabbitmq:
+        image: 'rabbitmq'
